@@ -1,5 +1,6 @@
 package de.bencoepp;
 
+import de.bencoepp.command.DoctorCommand;
 import picocli.CommandLine;
 
 @CommandLine.Command(name = "honnet", mixinStandardHelpOptions = true, version = "demo v. 1.8",
@@ -7,6 +8,7 @@ import picocli.CommandLine;
         commandListHeading = "%nCommands:%n%nThe most commonly used honnet commands are:%n",
         footer = "%nSee 'probatio help <command>' to read about a specific subcommand or concept.",
         subcommands = {
+                DoctorCommand.class,
                 CommandLine.HelpCommand.class
         })
 public class Honnet implements Runnable{
