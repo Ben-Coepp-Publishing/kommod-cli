@@ -1,6 +1,7 @@
 package de.bencoepp;
 
 import de.bencoepp.command.DoctorCommand;
+import de.bencoepp.command.TestController;
 import picocli.CommandLine;
 
 @CommandLine.Command(name = "honnet", mixinStandardHelpOptions = true, version = "demo v. 1.8",
@@ -9,6 +10,7 @@ import picocli.CommandLine;
         footer = "%nSee 'probatio help <command>' to read about a specific subcommand or concept.",
         subcommands = {
                 DoctorCommand.class,
+                TestController.class,
                 CommandLine.HelpCommand.class
         })
 public class Honnet implements Runnable{
