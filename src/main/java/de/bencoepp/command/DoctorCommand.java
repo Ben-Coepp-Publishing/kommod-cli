@@ -29,6 +29,9 @@ import static java.net.http.HttpResponse.*;
         description = "check for virtualization tools and software and its specific use cases for production")
 public class DoctorCommand implements Callable<Integer> {
 
+    @CommandLine.Option(names = {"-v", "--verbose"},
+            description = "print full output to screen")
+    boolean verbose;
     @CommandLine.Spec
     CommandLine.Model.CommandSpec spec;
     @Override
@@ -42,6 +45,32 @@ public class DoctorCommand implements Callable<Integer> {
         HttpResponse<String> response =  client.send(request, HttpResponse.BodyHandlers.ofString());
         ObjectMapper mapper = new ObjectMapper();
         ArrayList<Check> checks = mapper.readValue(response.body(), new TypeReference<ArrayList<Check>>() {});
+
+        boolean isThereIssue = false;
+        int issueCount = 0;
+
+        System.out.println("Doctor summary (to see all details, run honnet doctor -v):");
+        for (Check check : checks) {
+            if(check.getOk()){
+                if(isThereIssue != true){
+                    isThereIssue = false;
+                }
+                System.out.println("[√] " + check.getTitle() + " (" + check.getCommand() + ")");
+            }else{
+                isThereIssue = true;
+                issueCount++;
+                System.out.println("[!] " + check.getTitle() + " (" + check.getCommand() + ")");
+            }
+            if(verbose){
+                System.out.println(check.getDescription());
+            }
+        }
+        System.out.println("");
+        if(isThereIssue){
+            System.out.println("! Doctor found issues in " + issueCount + " category.");
+        }else{
+            System.out.println("√ Doctor found no issues but please re run this command from time to time.");
+        }
         return ok ? 0 : 1;
     }
 }
