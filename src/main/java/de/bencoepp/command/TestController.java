@@ -2,7 +2,6 @@ package de.bencoepp.command;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.bencoepp.entity.Check;
 import de.bencoepp.entity.test.Test;
 import org.barfuin.texttree.api.DefaultNode;
 import org.barfuin.texttree.api.TextTree;
@@ -10,7 +9,6 @@ import org.barfuin.texttree.api.TreeOptions;
 import org.barfuin.texttree.api.style.TreeStyle;
 import org.json.JSONObject;
 import picocli.CommandLine;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -18,6 +16,8 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.ListIterator;
 import java.util.Scanner;
 import java.util.concurrent.Callable;
 
@@ -74,14 +74,63 @@ public class TestController implements Callable<Integer> {
     @CommandLine.Command(name = "run")
     public Integer run() throws URISyntaxException, IOException, InterruptedException {
         boolean ok = true;
-        String jsonString = new JSONObject()
-                .put("runType", "3")
-                .toString();
+
+        System.out.println("Please select what type of test run you want to make." +
+                " If you are not sure how this will work please run this command again with --help." +
+                " This will print a short description of everything that this command can do.\n");
+
+        Scanner userInput = new Scanner(System.in);
+        JSONObject body = new JSONObject();
+        boolean depthChosen = false;
+
+        System.out.println("[1] Simple");
+        System.out.println("[2] Normal");
+        System.out.println("[3] Full");
+        System.out.println("[4] Specific");
+        System.out.println("\nPlease select the depth you want to run");
+
+        while (depthChosen == false){
+            String str = userInput.nextLine();
+            try {
+                int depthSelected = Integer.parseInt(str);
+                body.put("depth", depthSelected);
+                depthChosen = true;
+            }catch (Exception e){
+                System.out.println("Please select a depth to run");
+            }
+        }
+
+        if(depthChosen && body.getInt("depth") == 4){
+            System.out.println("Please choose the desired tests you want to run from the below list.\n" +
+                    "A example list would look like this.\n" +
+                    "1,4,23,33\n");
+
+            ArrayList<Test> tests = getAllTests();
+            for (int i = 0; i < tests.size(); i++) {
+                System.out.println("[" + i  + "] " + tests.get(i).getType());
+            }
+            boolean testsChosen = false;
+            while (testsChosen == false){
+                System.out.println("\nInput your desired tests:");
+                String str = userInput.nextLine();
+                try{
+                    String[] arrayTests = str.split(",");
+                    ArrayList<String> arrayTitles = new ArrayList<>();
+                    for (String strS : arrayTests) {
+                        arrayTitles.add(tests.get(Integer.parseInt(strS)).getTitle());
+                    }
+                    body.put("tests", arrayTitles);
+                    testsChosen = true;
+                }catch (Exception e){
+                    System.out.println("Please try again");
+                }
+            }
+        }
 
         HttpClient client = HttpClient.newBuilder().build();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(new URI("http://localhost:8080/api/test/run"))
-                .POST(HttpRequest.BodyPublishers.ofString(jsonString))
+                .POST(HttpRequest.BodyPublishers.ofString(body.toString()))
                 .build();
 
         HttpResponse<String> response =  client.send(request, HttpResponse.BodyHandlers.ofString());
