@@ -19,12 +19,3 @@ unit-test-job:
   script:
     - echo "Running unit tests..."
     - mvn test
-
-deploy-github-job:
-  stage: deploy
-  tags:
-    - "vettel"
-  script:
-    - echo "Deploying application..."
-    - git push github
-    - echo "Application successfully deployed."
