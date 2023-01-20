@@ -6,7 +6,7 @@ stages:
 build-job:
   stage: build
   tags:
-    - "vettel"
+    - "kommod"
   script:
     - echo "Compiling the code..."
     - mvn package
@@ -15,7 +15,7 @@ build-job:
 unit-test-job:
   stage: test
   tags:
-    - "vettel"
+    - "kommod"
   script:
     - echo "Running unit tests..."
     - mvn test

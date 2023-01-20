@@ -41,7 +41,7 @@
     </dependency>
     <dependency>
       <groupId>de.bencoepp</groupId>
-      <artifactId>honnet-commons</artifactId>
+      <artifactId>kommod-commons</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
     <dependency>
