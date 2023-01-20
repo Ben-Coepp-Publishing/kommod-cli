@@ -17,13 +17,13 @@ architectures:
   - build-on: amd64
 
 apps:
-  probatio:
+  kommod-cli:
     command:
       java -jar -Duser.home=$SNAP_USER_DATA $SNAP/jar/probatio-1.0-SNAPSHOT.jar
     plugs: [ home, network]
 
 parts:
-  probatio:
+  kommod-cli:
     source: https://github.com/Ben-Coepp-Publishing/kommod-cli.git
     source-tag: main
     source-type: git
