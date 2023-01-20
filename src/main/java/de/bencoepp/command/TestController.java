@@ -45,7 +45,7 @@ public class TestController implements Callable<Integer> {
     public Integer list() throws URISyntaxException, IOException, InterruptedException {
         boolean ok = true;
         ArrayList<Test> tests = getAllTests();
-        DefaultNode tree = new DefaultNode("Honnet Tests");
+        DefaultNode tree = new DefaultNode("Kommod Tests");
         DefaultNode system = new DefaultNode("System");
         DefaultNode docker = new DefaultNode("Docker");
 
