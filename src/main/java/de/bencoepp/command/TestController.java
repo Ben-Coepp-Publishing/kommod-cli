@@ -134,7 +134,7 @@ public class TestController implements Callable<Integer> {
                 .build();
 
         HttpResponse<String> response =  client.send(request, HttpResponse.BodyHandlers.ofString());
-
+        //TODO implement wait and then get response method
         return ok ? 0 : 1;
     }
 
