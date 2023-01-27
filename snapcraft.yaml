@@ -17,9 +17,9 @@ architectures:
   - build-on: amd64
 
 apps:
-  kommod-cli:
+  kommod:
     command:
-      java -jar -Duser.home=$SNAP_USER_DATA $SNAP/jar/probatio-1.0-SNAPSHOT.jar
+      java -jar -Duser.home=$SNAP_USER_DATA $SNAP/jar/kommod-cli-1.0-SNAPSHOT.jar
     plugs: [ home, network]
 
 parts:
