@@ -1,6 +1,6 @@
-name: kommod
+name: kommod-cli
 title: kommod-cli
-version: '0.0.2'
+version: '0.0.1'
 summary: The all in one tool for testing systems and containers
 description: |
   This tool can be used to develop container applications and test them for 
