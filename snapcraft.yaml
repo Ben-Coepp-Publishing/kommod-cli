@@ -1,4 +1,4 @@
-name: kommod-cli
+name: kommod
 title: kommod-cli
 version: '0.0.1'
 summary: The all in one tool for testing systems and containers
@@ -9,7 +9,7 @@ grade: stable
 confinement: strict
 base: core18
 
-website: https://kommod.io
+website: https://kommod.app
 issues: https://gitlab.com/kommod/kommod-cli/-/issues
 license: MIT
 
