@@ -23,7 +23,7 @@ apps:
     plugs: [ home, network]
 
 parts:
-  kommod-cli:
+  kommod:
     source: https://github.com/Ben-Coepp-Publishing/kommod-cli.git
     source-tag: main
     source-type: git
