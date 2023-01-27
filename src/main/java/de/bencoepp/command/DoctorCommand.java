@@ -42,7 +42,7 @@ public class DoctorCommand implements Callable<Integer> {
         boolean isThereIssue = false;
         int issueCount = 0;
 
-        System.out.println("Doctor summary (to see all details, run honnet doctor -v):");
+        System.out.println("Doctor summary (to see all details, run kommod doctor -v):");
         for (Check check : checks) {
             if(check.getOk()){
                 if(isThereIssue != true){

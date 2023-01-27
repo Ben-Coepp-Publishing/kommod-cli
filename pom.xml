@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>de.bencoepp</groupId>
-  <artifactId>honnet</artifactId>
+  <artifactId>kommod-cli</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <properties>
@@ -97,7 +97,7 @@
             <manifest>
               <addClasspath>true</addClasspath>
               <classpathPrefix>lib/</classpathPrefix>
-              <mainClass>de.bencoepp.Honnet</mainClass>
+              <mainClass>de.bencoepp.Kommod</mainClass>
             </manifest>
           </archive>
         </configuration>
