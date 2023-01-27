@@ -17,13 +17,13 @@ architectures:
   - build-on: amd64
 
 apps:
-  kommod:
+  kommod-cli:
     command:
       java -jar -Duser.home=$SNAP_USER_DATA $SNAP/jar/kommod-cli-1.0-SNAPSHOT.jar
     plugs: [ home, network]
 
 parts:
-  kommod:
+  kommod-cli:
     source: https://github.com/Ben-Coepp-Publishing/kommod-cli.git
     source-tag: main
     source-type: git
