@@ -32,7 +32,7 @@ public class DoctorCommand implements Callable<Integer> {
         boolean ok = true;
         HttpClient client = HttpClient.newBuilder().build();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(new URI("http://localhost:8080/api/doctor/all"))
+                .uri(new URI("http://localhost:25420/api/doctor/all"))
                 .GET()
                 .build();
         HttpResponse<String> response =  client.send(request, HttpResponse.BodyHandlers.ofString());

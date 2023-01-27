@@ -31,3 +31,12 @@ parts:
     stage:
       - -usr/lib/jvm/java-11-openjdk-amd64/lib/security/blacklisted.certs
       - -etc/java-11-openjdk/security/blacklisted.certs lint-snap-v2_external_symlinks
+    after:
+      - kommod-commons
+
+  kommod-commons:
+    source: https://github.com/Ben-Coepp-Publishing/kommod-commons.git
+    source-tag: main
+    source-type: git
+    plugin: maven
+    maven-options: [install]

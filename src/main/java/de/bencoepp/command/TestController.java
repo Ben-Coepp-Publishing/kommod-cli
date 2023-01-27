@@ -129,7 +129,7 @@ public class TestController implements Callable<Integer> {
 
         HttpClient client = HttpClient.newBuilder().build();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(new URI("http://localhost:8080/api/test/run"))
+                .uri(new URI("http://localhost:25420/api/test/run"))
                 .POST(HttpRequest.BodyPublishers.ofString(body.toString()))
                 .build();
 
@@ -142,7 +142,7 @@ public class TestController implements Callable<Integer> {
 
         HttpClient client = HttpClient.newBuilder().build();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(new URI("http://localhost:8080/api/test/all"))
+                .uri(new URI("http://localhost:25420/api/test/all"))
                 .GET()
                 .build();
         HttpResponse<String> response =  client.send(request, HttpResponse.BodyHandlers.ofString());
