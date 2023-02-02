@@ -1,5 +1,5 @@
-name: kommod-cli
-title: kommod-cli
+name: kommod
+title: kommod
 version: '0.0.1'
 summary: The all in one tool for testing systems and containers
 description: |
@@ -10,20 +10,20 @@ confinement: strict
 base: core18
 
 website: https://kommod.app
-issues: https://gitlab.com/kommod/kommod-cli/-/issues
+issues: https://gitlab.com/kommod/kommod/-/issues
 license: MIT
 
 architectures:
   - build-on: amd64
 
 apps:
-  kommod-cli:
+  kommod:
     command:
       java -jar -Duser.home=$SNAP_USER_DATA $SNAP/jar/kommod-cli-1.0-SNAPSHOT.jar
     plugs: [ home, network]
 
 parts:
-  kommod-cli:
+  kommod:
     source: https://github.com/Ben-Coepp-Publishing/kommod-cli.git
     source-tag: main
     source-type: git
